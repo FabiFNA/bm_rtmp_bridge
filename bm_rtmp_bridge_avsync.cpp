@@ -304,7 +304,7 @@ struct RelayManager {
 
         subs.push_back(sub);
 
-        LOG("OBS verbunden (" << subs.size() << " subscriber)");
+        LOG("OBS connected (" << subs.size() << " subscriber)");
     }
 
     void remove(socket_t s) {
@@ -319,7 +319,7 @@ struct RelayManager {
                 }),
             subs.end());
 
-        LOG("OBS getrennt (" << subs.size() << " verbleibend)");
+        LOG("OBS disconnected (" << subs.size() << " remaining)");
     }
 
     void cache(uint8_t type, const std::vector<uint8_t>& p) {
@@ -664,7 +664,7 @@ int main() {
     addr.sin_addr.s_addr = INADDR_ANY;
     addr.sin_port        = htons(RTMP_PORT);
     if (bind(srv, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) < 0) {
-        ERR("bind() auf Port " << RTMP_PORT << " failed (port blocked?): " << sock_error);
+        ERR("bind() on port " << RTMP_PORT << " failed (port blocked?): " << sock_error);
         close_socket(srv); return 1;
     }
     listen(srv, 16);
@@ -676,7 +676,7 @@ int main() {
         if (c == INVALID_SOCK) continue;
         char ip[INET_ADDRSTRLEN]; inet_ntop(AF_INET,&ca.sin_addr,ip,sizeof(ip));
         std::string peer = std::string(ip)+":"+std::to_string(ntohs(ca.sin_port));
-        LOG("Verbindung von " << peer);
+        LOG("Connect form " << peer);
         std::thread(handle_client, c, peer).detach();
     }
 
