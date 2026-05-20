@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<streaming>
+    <service>
+        <name>bm_rtmp_bridge_avsync</name>
+        <servers>
+            <server>
+                <name>PC</name>
+                <url>rtmp://x.x.x.x:1935/live</url>
+            </server>
+        </servers>
+        <profiles>
+            <profile>
+                <name>Streaming High</name>
+                <config resolution="HD">
+                    <bitrate>9000000</bitrate>
+                    <audio-bitrate>128000</audio-bitrate>
+                    <keyframe-interval>2</keyframe-interval>
+                </config>
+            </profile>
+            <profile>
+                <name>Streaming Low</name>
+                <config resolution="HD">
+                    <bitrate>4000000</bitrate>
+                    <audio-bitrate>128000</audio-bitrate>
+                    <keyframe-interval>2</keyframe-interval>
+                </config>
+            </profile>
+        </profiles>
+    </service>
+</streaming>
